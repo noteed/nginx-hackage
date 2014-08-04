@@ -1,0 +1,5 @@
+server {
+  listen  80;
+  server_name hackage.haskell.org;
+  root /usr/share/nginx/www;
+}
