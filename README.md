@@ -1,8 +1,8 @@
 # Hackage mirror as static files
 
 Generate a static web site acting as a local Hackage server. The offered
-packages are currently a subset of the real Hackage, tailored for Reesd. This
-can be changed easily.
+packages are currently a subset of the real Hackage, managed by a manually
+edited file.
 
 ## Index
 
@@ -41,8 +41,11 @@ listed in `package-names.txt`. The format looks like:
     snap-server/0.9.4.5
     ...
 
-I.e. what `tar tf index.tar.gz` outputs, minus the cabal file component. Thus
-running
+I.e. what `tar tf index.tar.gz` outputs, minus the cabal file component. An
+example file `reesd-package-names.txt` (actually used to develop Reesd) is
+provided.
+
+Thus running
 
     > ./download.sh
 
