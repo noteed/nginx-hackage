@@ -12,7 +12,8 @@ All .cabal files of all packages are available at two locations:
     https://hackage.haskell.org/packages/archive/00-index.tar.gz
 
 The second location is a redirect to the first one. I guess it is necessary for
-older cabal-install versions. Note that HTTP is available too.
+older cabal-install versions. Note that HTTP is available too. HTTP is actually
+a necessity for `cabal-install`.
 
 That file is roughly 7.1 M. The structure of the index is as follow:
 
@@ -32,6 +33,8 @@ The cabal file is also available at:
     https://hackage.haskell.org/package/snap-server-0.9.4.5/snap-server.cabal
     https://hackage.haskell.org/packages/archive/snap-server/0.9.4.5/snap-server.cabal
 
+Note: currently we don't download it or serve it separately.
+
 ## Generating the content
 
 We don't download everything from Hackage. Instead we download only what is
@@ -50,8 +53,8 @@ Thus running
     > ./download.sh
 
 will download the individual tarballs, put them in the correct places within
-the `static` directory, and add symbolic links to make the tarballs available
-under the two different URL schemes.
+the `static` directory (using the first URI layout described above; the second
+layout is provided by an Nginx rewrite rule).
 
 TODO The index that we serve ourselves should be regenerated to only list the
 file that we actually have.
@@ -71,3 +74,28 @@ section):
 Note that the Nginx configuration's server name is `hackage.haskell.org`. This
 is ok if you want to impersonate the real `hackage.haskell.org` on a local
 network (or a single host).
+
+## Note for automatic downloads / mirroring
+
+Support for both If-None-Match and If-Modified-Since headers is broken on the
+official Hackage. (See
+http://www.haskell.org/pipermail/cabal-devel/2014-June/009807.html)
+
+Usage of `noteed/nginx` as showned above supports If-Modified-Since.
+
+This means that providing the value of Last-modified (as-is) allows one to not
+download the new index if not necessary. Instead, a 304 Not Modified is
+returned:
+
+    > curl -I -H 'If-Modified-Since: Thu, 07 Aug 2014 05:26:11 GMT' \
+        http://xxx.xxx.xxx.xxx/packages/index.tar.gz
+    HTTP/1.1 304 Not Modified
+    Server: nginx/1.1.19
+    Date: Thu, 07 Aug 2014 11:29:31 GMT
+    Last-Modified: Thu, 07 Aug 2014 05:26:11 GMT
+    Connection: keep-alive
+
+If you want to setup a mirror, downloading all Hackage's packages is time
+consuming and probably an increase in transfer that it would be happy to avoid.
+
+A better way is to use rsync. See https://github.com/noteed/rsync-hackage.
