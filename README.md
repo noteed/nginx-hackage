@@ -1,19 +1,22 @@
 # Hackage mirror as static files
 
 Generate a static web site acting as a local Hackage server. The offered
-packages are currently a subset of the real Hackage, managed by a manually
-edited file.
+packages can be a subset of the real Hackage, managed by a manually edited
+file.
+
+The result, slightly modified, is visible at http://hackage.reesd.com/.
 
 ## Index
 
-All .cabal files of all packages are available at two locations:
+On the real Hackage, all .cabal files of all packages are available at two
+locations:
 
     https://hackage.haskell.org/packages/index.tar.gz
     https://hackage.haskell.org/packages/archive/00-index.tar.gz
 
 The second location is a redirect to the first one. I guess it is necessary for
-older cabal-install versions. Note that HTTP is available too. HTTP is actually
-a necessity for `cabal-install`.
+older cabal-install versions. Note that HTTP is available too and is actually a
+necessity for `cabal-install`.
 
 That file is roughly 7.1 M. The structure of the index is as follow:
 
@@ -33,7 +36,7 @@ The cabal file is also available at:
     https://hackage.haskell.org/package/snap-server-0.9.4.5/snap-server.cabal
     https://hackage.haskell.org/packages/archive/snap-server/0.9.4.5/snap-server.cabal
 
-Note: currently we don't download it or serve it separately.
+Note: currently we don't download the `.cabal` file or serve it separately.
 
 ## Generating the content
 
