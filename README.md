@@ -40,8 +40,9 @@ Note: currently we don't download the `.cabal` file or serve it separately.
 
 ## Generating the content
 
-We don't download everything from Hackage. Instead we download only what is
-listed in `package-names.txt`. The format looks like:
+We don't download everything from Hackage. The whole Hackage is about 3.6G.
+Instead we download only what is listed in `package-names.txt`. The format
+looks like:
 
     ...
     snap-server/0.9.4.5
