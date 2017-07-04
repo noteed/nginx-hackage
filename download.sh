@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/env/bin bash
 
 # Download listed packages from `package-names.txt` to the `static` directory.
 # See README.md.
