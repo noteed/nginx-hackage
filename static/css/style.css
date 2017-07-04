@@ -18,7 +18,7 @@ code,pre {
   font-weight: bold;
 }
 pre {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 
@@ -45,7 +45,7 @@ body {
   padding: 20px;
 }
 .site-wrapper-inner {
-  background-color: #fff7f0;
+  background-color: #ffff00;
   display: table-cell;
   vertical-align: top;
 }
