@@ -1,10 +1,11 @@
 # Hackage mirror as static files
 
-Generate a static web site acting as a local Hackage server. The offered
-packages can be a subset of the real Hackage, managed by a manually edited
-file.
+This repository contains a few scripts to generate a static web site acting as
+a local Hackage server. The offered packages can be a subset of the real
+Hackage, managed by a manually edited file.
 
-The result, slightly modified, is visible at http://hackage.reesd.com/.
+The result (with all packages) is visible at http://hackage.reesd.com/.
+
 
 ## Index
 
@@ -31,18 +32,19 @@ The corresponding package actually lives at (note the missing "s" to
     https://hackage.haskell.org/package/snap-server-0.9.4.5/snap-server-0.9.4.5.tar.gz
     https://hackage.haskell.org/packages/archive/snap-server/0.9.4.5/snap-server-0.9.4.5.tar.gz
 
-The cabal file is also available at:
+On Hackage, the cabal file is also available at:
 
     https://hackage.haskell.org/package/snap-server-0.9.4.5/snap-server.cabal
     https://hackage.haskell.org/packages/archive/snap-server/0.9.4.5/snap-server.cabal
 
 Note: currently we don't download the `.cabal` file or serve it separately.
 
+
 ## Generating the content
 
-We don't download everything from Hackage. The whole Hackage is about 3.6G.
-Instead we download only what is listed in `package-names.txt`. The format
-looks like:
+We don't necessarily download everything from Hackage. The whole Hackage is
+about 9G. Instead we download only what is listed in `package-names.txt`. The
+format looks like:
 
     ...
     snap-server/0.9.4.5
@@ -63,6 +65,9 @@ layout is provided by an Nginx rewrite rule).
 TODO The index that we serve ourselves should be regenerated to only list the
 file that we actually have.
 
+A full mirror can be created and updated with the `sync.sh` script.
+
+
 ## Serving the index and packages
 
 With the Docker image from https://github.com/noteed/docker-nginx, it is
@@ -77,6 +82,7 @@ section):
 
 Note that the Nginx configuration's server name is `hackage.reesd.com`. Please
 adapat it to your needs.
+
 
 ## Note for automatic downloads / mirroring
 
