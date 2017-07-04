@@ -75,9 +75,8 @@ section):
         -v `pwd`/sites-enabled:/etc/nginx/sites-enabled \
         noteed/nginx
 
-Note that the Nginx configuration's server name is `hackage.haskell.org`. This
-is ok if you want to impersonate the real `hackage.haskell.org` on a local
-network (or a single host).
+Note that the Nginx configuration's server name is `hackage.reesd.com`. Please
+adapat it to your needs.
 
 ## Note for automatic downloads / mirroring
 
